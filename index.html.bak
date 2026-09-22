@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="theme-mint" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ตลาดของเหลือใช้ชุมชนโพธาราม - Photharam Green Marketplace</title>
+  
+  <!-- Google Fonts: Prompt & Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-phone-frame">
+
+  <!-- Outer Ambient Glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Desktop Outer Wrapper for 9:16 Simulator -->
+  <div class="desktop-container">
+    
+    <!-- Top Floating Header & Theme Controls -->
+    <header class="desktop-header">
+      <div class="brand-info">
+        <div class="badge-trust-eco"><i data-lucide="shield-check"></i> แพลตฟอร์มกลางอำเภอโพธาราม • Japanese Minimal Eco UI</div>
+        <h1>ตลาดของเหลือใช้ชุมชนโพธาราม</h1>
+      </div>
+      
+      <!-- Multi-Theme Palette Selector -->
+      <div class="theme-selector-bar">
+        <div class="theme-row-top">
+          <span class="theme-bar-label">🎨 เลือกโทนสีญี่ปุ่นสบายตา:</span>
+          <div class="theme-pills">
+            <button class="theme-btn active" data-set-theme="theme-mint" onclick="switchAppTheme('theme-mint')">
+              <span class="dot-color mint"></span> ครีมมินต์
+            </button>
+            <button class="theme-btn" data-set-theme="theme-cyan" onclick="switchAppTheme('theme-cyan')">
+              <span class="dot-color cyan"></span> ฟ้าสกาย
+            </button>
+            <button class="theme-btn" data-set-theme="theme-sage" onclick="switchAppTheme('theme-sage')">
+              <span class="dot-color sage"></span> เขียว Sage
+            </button>
+            <button class="theme-btn" data-set-theme="theme-pearl" onclick="switchAppTheme('theme-pearl')">
+              <span class="dot-color pearl"></span> คลีนพอลล์
+            </button>
+          </div>
+        </div>
+
+        <!-- Dark / Light Mode Switcher Toggle Button -->
+        <div class="mode-switcher-row">
+          <button id="btnModeToggle" class="btn-mode-toggle" onclick="toggleDarkLightMode()">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+            <span id="modeLabelText">โหมดสว่าง (Light Mode)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- View Ratio Switcher -->
+      <div class="view-controls-bar">
+        <div class="view-switcher">
+          <button id="btn-toggle-frame" class="btn-frame-toggle active">
+            <i data-lucide="smartphone"></i>
+            <span>มุมมองมือถือ 9:16</span>
+          </button>
+          <button id="btn-toggle-responsive" class="btn-frame-toggle">
+            <i data-lucide="monitor"></i>
+            <span>มุมมองเต็มจอ Responsive</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Phone Device Container (9:16 Aspect Ratio Container) -->
+    <div class="phone-wrapper" id="phoneContainer">
+      <div class="phone-frame">
+        
+        <!-- Phone Hardware Notch & Status Bar -->
+        <div class="phone-notch">
+          <div class="phone-speaker"></div>
+          <div class="phone-camera"></div>
+        </div>
+
+        <div class="phone-status-bar">
+          <span class="status-time" id="statusTime">09:41</span>
+          <div class="status-icons">
+            <i data-lucide="signal" class="icon-small"></i>
+            <i data-lucide="wifi" class="icon-small"></i>
+            <i data-lucide="battery" class="icon-small"></i>
+          </div>
+        </div>
+
+        <!-- APP CONTENT VIEWPORT WITH FLOATING BLOBS & LEAF PARTICLES -->
+        <main class="app-viewport">
+
+          <!-- Floating Gradient Blobs -->
+          <div class="app-blob blob-1"></div>
+          <div class="app-blob blob-2"></div>
+          <div class="app-blob blob-3"></div>
+
+          <!-- Floating Leaf & Sparkle Particles -->
+          <div class="floating-particle p-leaf-1">🍃</div>
+          <div class="floating-particle p-leaf-2">🌿</div>
+          <div class="floating-particle p-sparkle-1">✨</div>
+
+          <!-- Activity Marquee Ticker -->
+          <div class="activity-ticker">
+            <div class="ticker-content" id="activityTickerContent">
+              <span>🔔 <strong>ข่าวประกาศโพธาราม:</strong> คุณวิชาญ รับชุดโซฟาไม้สักแล้ว • 🎁 ป้าสมใจ แจกฟรี <strong>กระถางดินเผา 10 ใบ</strong> • 🌱 ลุงสมชาย เพิ่มปุ๋ยคอกหมักชีวภาพ 15 กระสอบ</span>
+            </div>
+          </div>
+
+          <!-- App Top Header (Soft Glass) -->
+          <header class="app-header glass-element">
+            <div class="app-header-top">
+              <div class="app-logo">
+                <div class="logo-icon"><i data-lucide="recycle"></i></div>
+                <div>
+                  <h2>โพธาราม Second Market</h2>
+                  <span class="app-subtitle">ตลาดแบ่งปัน & ลดขยะชุมชน</span>
+                </div>
+              </div>
+
+              <div class="app-header-actions">
+                <button class="btn-icon-badge" onclick="openNotificationsModal()" title="การแจ้งเตือน">
+                  <i data-lucide="bell"></i>
+                  <span class="badge-dot" id="notifBadgeDot"></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-box">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" id="searchInput" placeholder="ค้นหาเตาหมูกระทะ, โซฟาไม้, กระถาง, ปุ๋ย, จักรยาน..." autocomplete="off">
+              <button class="btn-filter-trigger" id="btnFilterTrigger" title="ตัวกรอง">
+                <i data-lucide="sliders-horizontal"></i>
+              </button>
+            </div>
+          </header>
+
+          <!-- Scrollable Main View Area -->
+          <div class="app-body" id="appBody">
+
+            <!-- TAB 1: HOME (หน้าแรก) -->
+            <section id="tab-home" class="tab-page active">
+              
+              <!-- Neighborhood Stories Highlights Bar -->
+              <div class="stories-bar">
+                <div class="story-item story-add" onclick="openAddModal()">
+                  <div class="story-circle add-circle">
+                    <i data-lucide="plus"></i>
+                  </div>
+                  <span>โพสต์ใหม่</span>
+                </div>
+                <div class="story-item" onclick="openStoryViewer('ป้าสมศรี ร้านข้าวมันไก่', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150', 'วันนี้มีกล่องกระดาษสภาพดี 30 ใบ แจกฟรีให้เพื่อนบ้านโพธารามนำไปแพ็คของครับ!')">
+                  <div class="story-circle ring-active">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="สตอรี่">
+                  </div>
+                  <span>ป้าสมศรี</span>
+                </div>
+                <div class="story-item" onclick="openStoryViewer('ลุงสมชาย ฟาร์มรักษ์โลก', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150', 'ปุ๋ยคอกหมักชีวภาพพร้อมส่งครับ ช่วยบำรุงผักสวนครัวงามมาก มารับได้ที่สวนสร้อยฟ้า')">
+                  <div class="story-circle ring-active">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="สตอรี่">
+                  </div>
+                  <span>ลุงสมชาย</span>
+                </div>
+                <div class="story-item" onclick="openStoryViewer('เฮียโต้ง ร้านหมูกระทะ', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150', 'ส่งมอบเตาหมูกระทะทองเหลืองให้เพื่อนบ้านเรียบร้อย ขอบคุณพื้นที่ตลาดแบ่งปันโพธารามครับ!')">
+                  <div class="story-circle ring-active">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="สตอรี่">
+                  </div>
+                  <span>เฮียโต้ง</span>
+                </div>
+                <div class="story-item" onclick="openStoryViewer('กลุ่มเกษตรกรโพธาราม', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150', 'เดือนนี้สมาคมรักษ์โลกช่วยลดขยะในโพธารามไปแล้วกว่า 342 กิโลกรัม ยอดเยี่ยมมากครับ!')">
+                  <div class="story-circle ring-active">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150" alt="สตอรี่">
+                  </div>
+                  <span>กลุ่มเกษตร</span>
+                </div>
+              </div>
+
+              <!-- ENHANCED HERO BANNER WITH CARTOON MASCOT -->
+              <div class="hero-banner glass-card">
+                <div class="hero-content">
+                  <span class="hero-tag">✨ ตลาดของเหลือใช้ • อำเภอโพธาราม</span>
+                  <h3>เปลี่ยนของเหลือใช้ในบ้าน ให้เป็นคุณค่าของเพื่อนบ้าน</h3>
+                  <p>ลดปริมาณขยะ ประหยัดค่าใช้จ่าย และแบ่งปันสิ่งของสภาพดีในโพธาราม</p>
+                  <div class="hero-actions">
+                    <button class="btn-hero-primary" id="btnHeroPost">
+                      <i data-lucide="plus-circle"></i> ประกาศแบ่งปันของ
+                    </button>
+                    <button class="btn-hero-secondary" onclick="switchTab('map')">
+                      <i data-lucide="map-pin"></i> ดูจุดนัดรับใกล้คุณ
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Cute Mascot & Speech Bubble -->
+                <div class="hero-mascot-wrapper">
+                  <div class="mascot-speech-bubble">
+                    <span>น้องรักษ์โลก 🌿<br>ยินดีต้อนรับชาวโพธารามครับ!</span>
+                  </div>
+                  <img src="public/images/eco_mascot.jpg" alt="มาสคอตน้องรักษ์โลก" class="mascot-img">
+                  <div class="eco-bubble">🌱 CO2 Saved -1.2T</div>
+                </div>
+              </div>
+
+              <!-- Refined Filter Frame Container -->
+              <div class="filter-frame-container glass-card">
+                <div class="filter-frame-header">
+                  <span><i data-lucide="filter"></i> ตัวกรองรูปแบบการส่งต่อ</span>
+                  <span class="filter-subtitle">เลือกประเภทสิ่งของ</span>
+                </div>
+                <div class="filter-type-bar">
+                  <button class="type-btn active" data-type="all">ทั้งหมด</button>
+                  <button class="type-btn" data-type="free">🎁 แจกฟรี</button>
+                  <button class="type-btn" data-type="sell">🏷️ ขายต่อมิตรภาพ</button>
+                  <button class="type-btn" data-type="swap">🔄 ขอแลกเปลี่ยน</button>
+                </div>
+              </div>
+
+              <!-- Category Pills -->
+              <div class="section-container">
+                <div class="section-title">
+                  <h4><i data-lucide="grid"></i> หมวดหมู่สินค้าในชุมชน</h4>
+                  <span class="view-all" onclick="switchTab('market')">ดูทั้งหมด</span>
+                </div>
+
+                <div class="category-pills">
+                  <button class="cat-pill active" data-cat="all">
+                    <span class="pill-emoji">🛒</span> ทั้งหมด
+                  </button>
+                  <button class="cat-pill" data-cat="restaurant">
+                    <span class="pill-emoji">🍳</span> หมวดร้านอาหาร
+                  </button>
+                  <button class="cat-pill" data-cat="agriculture">
+                    <span class="pill-emoji">🌱</span> เกษตรกรรม & สวน
+                  </button>
+                  <button class="cat-pill" data-cat="furniture">
+                    <span class="pill-emoji">🛋️</span> เฟอร์นิเจอร์ & บ้าน
+                  </button>
+                  <button class="cat-pill" data-cat="electronics">
+                    <span class="pill-emoji">🔌</span> เครื่องใช้ไฟฟ้า
+                  </button>
+                  <button class="cat-pill" data-cat="general">
+                    <span class="pill-emoji">📦</span> ของใช้ทั่วไป
+                  </button>
+                </div>
+              </div>
+
+              <!-- FEATURED PRODUCTS GRID -->
+              <div class="section-container">
+                <div class="section-title">
+                  <h4><i data-lucide="sparkles" class="icon-accent"></i> รายการของเหลือใช้พร้อมส่งต่อ</h4>
+                  <span class="item-count-badge" id="homeItemCount">6 รายการ</span>
+                </div>
+
+                <div class="products-grid" id="homeProductsGrid">
+                  <!-- Rendered dynamically by app.js -->
+                </div>
+              </div>
+
+              <!-- Environmental Impact Card -->
+              <div class="sustainability-card glass-card" onclick="switchTab('profile')">
+                <div class="sus-header">
+                  <div>
+                    <span class="sus-badge">📊 Environmental Impact & Score</span>
+                    <h4>สถิติการลดขยะชุมชนโพธาราม</h4>
+                  </div>
+                  <i data-lucide="chevron-right"></i>
+                </div>
+                <div class="sus-grid">
+                  <div class="sus-item">
+                    <span class="sus-val">342 kg</span>
+                    <span class="sus-lbl">ขยะถูกหมุนเวียน</span>
+                  </div>
+                  <div class="sus-item">
+                    <span class="sus-val">89 ชิ้น</span>
+                    <span class="sus-lbl">ส่งมอบสำเร็จ</span>
+                  </div>
+                  <div class="sus-item">
+                    <span class="sus-val">฿24,500</span>
+                    <span class="sus-lbl">ประหยัดให้ชุมชน</span>
+                  </div>
+                </div>
+              </div>
+
+            </section>
+
+
+            <!-- TAB 2: MARKETPLACE (ตลาดแบ่งปัน) -->
+            <section id="tab-market" class="tab-page">
+              <div class="tab-header-mini">
+                <h3>🛍️ ตลาดแบ่งปันของชุมชน</h3>
+                <p>สำรวจสิ่งของสภาพดีที่เพื่อนบ้านนำมาแบ่งปันในโพธาราม</p>
+              </div>
+
+              <div class="filter-frame-container glass-card">
+                <div class="market-controls">
+                  <div class="search-box">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="marketSearchInput" placeholder="ค้นหาตามชื่อสินค้า หรือสถานที่...">
+                  </div>
+                  <div class="market-filter-chips">
+                    <button class="chip active" data-mcat="all">🛒 ทั้งหมด</button>
+                    <button class="chip" data-mcat="free">🎁 แจกฟรี</button>
+                    <button class="chip" data-mcat="sell">🏷️ ขายต่อ</button>
+                    <button class="chip" data-mcat="swap">🔄 ขอแลก</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="products-grid-vertical" id="marketProductsGrid">
+                <!-- Rendered dynamically -->
+              </div>
+            </section>
+
+
+            <!-- TAB 3: LOCATION MAP (ของใกล้บ้าน - Real Google Maps) -->
+            <section id="tab-map" class="tab-page">
+              <div class="tab-header-mini">
+                <h3>📍 แผนที่จริงนัดรับของใกล้บ้าน (Google Maps)</h3>
+                <p>พิกัดจุดนัดรับจริงในเขต อ.โพธาราม จ.ราชบุรี</p>
+              </div>
+
+              <div class="real-map-wrapper">
+                <iframe 
+                  id="googleMapIframe"
+                  class="google-map-iframe"
+                  src="https://maps.google.com/maps?q=Photharam%20District,%20Ratchaburi,%20Thailand&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  loading="lazy" 
+                  allowfullscreen>
+                </iframe>
+
+                <div class="map-overlay-pins">
+                  <button class="map-chip-pin" onclick="openProductDetail(1)">
+                    <span>🥘 เตาหมูกระทะ (ตลาดริมน้ำ)</span>
+                  </button>
+                  <button class="map-chip-pin" onclick="openProductDetail(2)">
+                    <span>🛋️ โซฟาไม้สัก (ต.บ้านเลือก)</span>
+                  </button>
+                  <button class="map-chip-pin" onclick="openProductDetail(3)">
+                    <span>🪴 กระถางดินเผา (ต.คลองตาคต)</span>
+                  </button>
+                  <button class="map-chip-pin" onclick="openProductDetail(4)">
+                    <span>❄️ ตู้แช่เครื่องดื่ม (ต.เจ็ดเสมียน)</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="nearby-locations-list">
+                <div class="list-title">📍 จุดนัดรับสำคัญในอำเภอโพธาราม</div>
+                <div class="location-item glass-card" onclick="filterByLocation('ตลาดริมน้ำโพธาราม')">
+                  <div class="loc-icon"><i data-lucide="map-pin"></i></div>
+                  <div class="loc-details">
+                    <strong>ตลาดริมน้ำโพธาราม</strong>
+                    <span>ต.โพธาราม (ห่างจากคุณ 0.8 กม.)</span>
+                  </div>
+                  <span class="badge-loc">นัดรับบ่อยสุด</span>
+                </div>
+                <div class="location-item glass-card" onclick="filterByLocation('สถานีรถไฟโพธาราม')">
+                  <div class="loc-icon"><i data-lucide="map-pin"></i></div>
+                  <div class="loc-details">
+                    <strong>สถานีรถไฟโพธาราม</strong>
+                    <span>ต.โพธาราม (ห่างจากคุณ 1.2 กม.)</span>
+                  </div>
+                </div>
+                <div class="location-item glass-card" onclick="filterByLocation('เทศบาลเมืองโพธาราม')">
+                  <div class="loc-icon"><i data-lucide="map-pin"></i></div>
+                  <div class="loc-details">
+                    <strong>หน้าเทศบาลเมืองโพธาราม</strong>
+                    <span>ต.โพธาราม (ห่างจากคุณ 1.5 กม.)</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- TAB 4: CHATS (แชทเจรจา) -->
+            <section id="tab-chats" class="tab-page">
+              <div class="tab-header-mini">
+                <h3>💬 กล่องข้อความเจรจานัดรับของ</h3>
+                <p>พูดคุยกับเพื่อนบ้าน ตกลงรายละเอียดนัดรับสินค้า</p>
+              </div>
+
+              <div class="chat-threads-list" id="chatThreadsList">
+                <!-- Dynamic chat threads -->
+              </div>
+            </section>
+
+
+            <!-- TAB 5: PROFILE & ADVANCED ADMIN -->
+            <section id="tab-profile" class="tab-page">
+              
+              <!-- Clean & Non-Overlapping User Profile Card -->
+              <div class="profile-card-clean glass-card">
+                <div class="profile-card-top">
+                  <div class="profile-avatar-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="อวตารผู้ใช้งาน">
+                    <span class="online-dot"></span>
+                  </div>
+                  
+                  <div class="profile-info-block">
+                    <div class="profile-name-row">
+                      <h3>คุณป้าสมศรี (ร้านข้าวมันไก่)</h3>
+                      <span class="badge-verify-check"><i data-lucide="check-circle-2"></i> ยืนยันแล้ว</span>
+                    </div>
+                    <p class="profile-role-tag">⭐ สมาชิกดีเด่นประจำชุมชนโพธาราม (ระดับทอง)</p>
+                    <p class="profile-location-text"><i data-lucide="map-pin"></i> ต.โพธาราม อ.โพธาราม จ.ราชบุรี</p>
+                  </div>
+                </div>
+
+                <!-- Community Trust Badges Row -->
+                <div class="profile-trust-badges">
+                  <div class="trust-badge-chip">
+                    <i data-lucide="award"></i> ผู้แบ่งปันดีเด่น
+                  </div>
+                  <div class="trust-badge-chip">
+                    <i data-lucide="leaf"></i> ลดขยะสะสม 98kg
+                  </div>
+                  <div class="trust-badge-chip">
+                    <i data-lucide="shield"></i> สมาชิก 2 ปี
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Numeric Stats Grid -->
+              <div class="profile-stats glass-card">
+                <div class="pstat">
+                  <span class="num" id="statMyCount">2</span>
+                  <span class="label">ประกาศของคุณ</span>
+                </div>
+                <div class="pstat">
+                  <span class="num" id="statClaimedCount">12</span>
+                  <span class="label">ส่งมอบสำเร็จ</span>
+                </div>
+                <div class="pstat">
+                  <span class="num" id="statFavCount">2</span>
+                  <span class="label">ของที่ถูกใจ</span>
+                </div>
+              </div>
+
+              <!-- Sub-Tab Navigation inside Profile -->
+              <div class="profile-tab-switcher">
+                <button class="ptab active" onclick="switchProfileSection('my-items')">📦 ประกาศของคุณ</button>
+                <button class="ptab" onclick="switchProfileSection('favorites')">❤️ ของที่ถูกใจ (<span id="favTabBadge">2</span>)</button>
+                <button class="ptab" onclick="switchProfileSection('admin-panel')">⚙️ แผงแอดมิน (Admin)</button>
+              </div>
+
+              <!-- Section 1: My Items -->
+              <div id="prof-my-items" class="prof-sub-section active">
+                <div class="sub-title-row">
+                  <span class="sub-title">รายการสิ่งของที่คุณลงประกาศไว้</span>
+                  <button class="btn-sm-primary" onclick="openAddModal()"><i data-lucide="plus"></i> โพสต์เพิ่ม</button>
+                </div>
+                <div class="products-grid-vertical" id="myItemsList">
+                  <!-- Loaded dynamically -->
+                </div>
+              </div>
+
+              <!-- Section 2: Favorites (ของที่ถูกใจ) -->
+              <div id="prof-favorites" class="prof-sub-section">
+                <div class="sub-title-row">
+                  <span class="sub-title">สิ่งของที่คุณกดถูกใจไว้ (❤️ Favorites)</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">กดหัวใจที่การ์ดสินค้าเพื่อเพิ่มลงในรายการนี้</span>
+                </div>
+                <div class="products-grid-vertical" id="favoritesList">
+                  <!-- Loaded dynamically -->
+                </div>
+              </div>
+
+              <!-- Section 3: EXPANDED HIGH-CONTROL ADMIN PANEL -->
+              <div id="prof-admin-panel" class="prof-sub-section">
+                <div class="admin-panel-card glass-card">
+                  <div class="admin-header">
+                    <h4><i data-lucide="shield-check"></i> แผงแอดมินสมาคมเกษตรกรรักษ์โลก</h4>
+                    <span class="badge-admin">ผู้ดูแลระบบ</span>
+                  </div>
+
+                  <!-- Expanded Admin Navigation Toolbar -->
+                  <div class="admin-tools-bar">
+                    <button class="admin-tool-btn active" onclick="switchAdminTab('dashboard')">📊 สถิติระบบ</button>
+                    <button class="admin-tool-btn" onclick="switchAdminTab('queue')">📋 รออนุมัติ</button>
+                    <button class="admin-tool-btn" onclick="switchAdminTab('manage-items')">📦 จัดการสิ่งของ</button>
+                    <button class="admin-tool-btn" onclick="switchAdminTab('users')">👥 สมาชิก</button>
+                    <button class="admin-tool-btn" onclick="switchAdminTab('broadcast')">📢 ประกาศ</button>
+                  </div>
+                  
+                  <!-- Admin Metric Boxes -->
+                  <div class="admin-stats-grid">
+                    <div class="astat-box">
+                      <span class="val" id="adminTotalUsers">142</span>
+                      <span class="lbl">สมาชิกทั้งหมด</span>
+                    </div>
+                    <div class="astat-box">
+                      <span class="val" id="adminTotalListings">6</span>
+                      <span class="lbl">ประกาศในระบบ</span>
+                    </div>
+                    <div class="astat-box orange">
+                      <span class="val" id="adminPendingCount">2</span>
+                      <span class="lbl">รออนุมัติ</span>
+                    </div>
+                  </div>
+
+                  <!-- ADMIN TAB 1: System Dashboard & Real-Time Analytics -->
+                  <div id="admin-sec-dashboard" class="admin-sub-view active">
+                    <h5><i data-lucide="trending-up"></i> สรุปผลการลดขยะและสถิติตลาด</h5>
+                    <div class="admin-dashboard-widgets">
+                      <div class="widget-box">
+                        <div class="widget-head"><i data-lucide="leaf"></i> ขยะหมุนเวียนรวม</div>
+                        <div class="widget-body">
+                          <span class="big-num">342.5 กิโลกรัม</span>
+                          <span class="meter-bar"><span class="meter-fill" style="width:75%;"></span></span>
+                          <small>บรรลุ 75% ของเป้าหมายประจำปี 2026</small>
+                        </div>
+                      </div>
+                      <div class="widget-box">
+                        <div class="widget-head"><i data-lucide="dollar-sign"></i> มูลค่าประหยัดรวม</div>
+                        <div class="widget-body">
+                          <span class="big-num">฿24,500 บาท</span>
+                          <small>ช่วยลดค่าใช้จ่ายในครัวเรือนของชาวโพธาราม</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ADMIN TAB 2: Audit Queue (Approve / Reject) -->
+                  <div id="admin-sec-queue" class="admin-sub-view">
+                    <h5><i data-lucide="clock"></i> รายการรอการอนุมัติ (Audit Queue)</h5>
+                    <div class="audit-queue-list" id="adminAuditQueueList">
+                      <!-- Rendered by JS -->
+                    </div>
+                  </div>
+
+                  <!-- ADMIN TAB 3: Manage Active Items (Delete / Pin / Toggle Status) -->
+                  <div id="admin-sec-manage-items" class="admin-sub-view">
+                    <h5><i data-lucide="layers"></i> จัดการ ลบ หรือปักหมุดสิ่งของในระบบ</h5>
+                    <div class="admin-items-list" id="adminItemsList">
+                      <!-- Rendered by JS -->
+                    </div>
+                  </div>
+
+                  <!-- ADMIN TAB 4: User Management (Verify ID & Ban System) -->
+                  <div id="admin-sec-users" class="admin-sub-view">
+                    <h5><i data-lucide="users"></i> ตรวจสอบสิทธิ์และยืนยันตัวตนสมาชิก</h5>
+                    <div class="user-manage-list" id="adminUserManageList">
+                      <!-- Rendered by JS -->
+                    </div>
+                  </div>
+
+                  <!-- ADMIN TAB 5: Broadcast Announcements -->
+                  <div id="admin-sec-broadcast" class="admin-sub-view">
+                    <h5><i data-lucide="megaphone"></i> ส่งข่าวด่วนถึงชาวโพธาราม (Marquee Broadcast)</h5>
+                    <div class="broadcast-form">
+                      <input type="text" id="broadcastInput" placeholder="พิมพ์ข้อความประกาศด่วนจากแอดมิน...">
+                      <button class="btn-sm-primary" onclick="publishAdminBroadcast()">
+                        <i data-lucide="send"></i> ส่งประกาศ
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </section>
+
+          </div> <!-- End app-body -->
+
+          <!-- Floating Add Button (FAB) -->
+          <button class="fab-add-btn" id="fabAdd" title="ลงประกาศของเหลือใช้">
+            <i data-lucide="plus"></i>
+          </button>
+
+          <!-- FLOATING GLASS BOTTOM NAVIGATION BAR -->
+          <nav class="app-bottom-nav floating-glass-nav">
+            <button class="nav-item active" onclick="switchTab('home')" id="nav-home">
+              <i data-lucide="home"></i>
+              <span>หน้าแรก</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('market')" id="nav-market">
+              <i data-lucide="store"></i>
+              <span>ตลาดแบ่งปัน</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('map')" id="nav-map">
+              <i data-lucide="map-pin"></i>
+              <span>ใกล้บ้าน</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('chats')" id="nav-chats">
+              <i data-lucide="message-square"></i>
+              <span class="chat-badge">1</span>
+              <span>แชท</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('profile')" id="nav-profile">
+              <i data-lucide="user"></i>
+              <span>โปรไฟล์</span>
+            </button>
+          </nav>
+
+        </main>
+
+      </div> <!-- End phone-frame -->
+    </div> <!-- End phone-wrapper -->
+
+  </div> <!-- End desktop-container -->
+
+
+  <!-- MODAL 1: PRODUCT DETAIL DRAWER -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-bottom-sheet">
+      <div class="sheet-handle"></div>
+      <button class="modal-close" onclick="closeProductModal()"><i data-lucide="x"></i></button>
+
+      <div class="sheet-content" id="modalProductContent">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 2: ADD / EDIT LISTING MODAL (BEAUTIFULLY STYLED FORM CONTROLS!) -->
+  <div class="modal-overlay" id="addListingModal">
+    <div class="modal-bottom-sheet sheet-large">
+      <div class="sheet-handle"></div>
+      <button class="modal-close" onclick="closeAddModal()"><i data-lucide="x"></i></button>
+
+      <div class="add-form-container">
+        <h3 id="modalFormHeaderTitle"><i data-lucide="plus-circle"></i> ลงทะเบียนประกาศของเหลือใช้</h3>
+        <p class="form-subtext" id="modalFormSubtext">แบ่งปัน ขายต่อ หรือเสนอแลกเปลี่ยนเครื่องมือและสิ่งของในบ้าน</p>
+
+        <form id="listingForm">
+          <input type="hidden" id="editItemId" value="">
+
+          <div class="form-group">
+            <label class="form-label">รูปภาพสินค้า (ต้องตรงกับรายการสินค้า)</label>
+            <div class="image-upload-box" id="uploadBox" onclick="triggerFileInput()">
+              <input type="file" id="fileInput" accept="image/*" style="display:none;" onchange="handleFileSelect(event)">
+              <div id="uploadPlaceholder" class="upload-placeholder-content">
+                <i data-lucide="camera" class="upload-icon"></i>
+                <span class="upload-title">แตะเพื่อเลือกรูป หรือถ่ายภาพสินค้า</span>
+                <small class="upload-sub">รองรับไฟล์ JPG, PNG</small>
+              </div>
+              <img id="uploadPreviewImage" src="" style="display:none;" alt="พรีวิวรูป">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ชื่อสิ่งของ / รายการสินค้า</label>
+            <input type="text" id="addTitle" class="form-input" placeholder="เช่น เตาหมูกระทะ, โซฟาไม้, กระถาง..." required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">หมวดหมู่</label>
+              <div class="select-wrapper">
+                <select id="addCategory" class="form-select" required>
+                  <option value="restaurant">🍳 หมวดร้านอาหาร</option>
+                  <option value="agriculture">🌱 หมวดเกษตรกรรม</option>
+                  <option value="furniture">🛋️ หมวดเฟอร์นิเจอร์</option>
+                  <option value="electronics">🔌 เครื่องใช้ไฟฟ้า</option>
+                  <option value="general" selected>📦 หมวดของทั่วไป</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">รูปแบบการส่งต่อ</label>
+              <div class="select-wrapper">
+                <select id="addType" class="form-select" onchange="togglePriceField(this.value)" required>
+                  <option value="free">🎁 แจกฟรี</option>
+                  <option value="sell">🏷️ ขายต่อราคามิตรภาพ</option>
+                  <option value="swap">🔄 เสนอแลกเปลี่ยน</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="priceFieldGroup" style="display:none;">
+            <label class="form-label">ราคา (บาท)</label>
+            <input type="number" id="addPrice" class="form-input" placeholder="เช่น 350">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">สถานที่นัดรับ (ในอำเภอโพธาราม)</label>
+            <input type="text" id="addLocation" class="form-input" placeholder="เช่น ตลาดริมน้ำโพธาราม, ต.เจ็ดเสมียน..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">รายละเอียดสินค้า / สภาพการใช้งาน</label>
+            <textarea id="addDescription" class="form-textarea" rows="3" placeholder="ระบุสภาพของ เหตุผลที่นำมาแบ่งปัน หรือเงื่อนไขนัดรับ..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-post" id="btnSubmitPostLabel">
+            <i data-lucide="check-circle"></i> ยืนยันลงประกาศ
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: CHAT SIMULATOR MODAL -->
+  <div class="modal-overlay" id="chatModal">
+    <div class="modal-bottom-sheet sheet-chat">
+      <div class="chat-header">
+        <button class="btn-back-chat" onclick="closeChatModal()"><i data-lucide="arrow-left"></i></button>
+        <div class="chat-user-info">
+          <img id="chatUserAvatar" src="" alt="อวตาร">
+          <div>
+            <strong id="chatUserName">ชื่อผู้ติดต่อ</strong>
+            <span class="status-online">● ออนไลน์ในอำเภอโพธาราม</span>
+          </div>
+        </div>
+        <button class="btn-call-header" onclick="startVoiceCall()" title="โทรผ่านแอป">
+          <i data-lucide="phone"></i>
+        </button>
+      </div>
+
+      <!-- Quick Conversation Starters -->
+      <div class="quick-chat-chips">
+        <button onclick="sendQuickMessage('สวัสดีครับ ขอนัดรับที่ตลาดริมน้ำโพธารามได้ไหมครับ? 📍')">📍 นัดรับตลาดริมน้ำ</button>
+        <button onclick="sendQuickMessage('สวัสดีครับ ขอลดราคามิตรภาพนิดนึงได้ไหมครับ 🏷️')">🏷️ ขอลดราคามิตรภาพ</button>
+        <button onclick="sendQuickMessage('ของยังอยู่ไหมครับ ขอนัดรับเสาร์นี้ 🚚')">🚚 นัดรับเสาร์นี้</button>
+      </div>
+
+      <div class="chat-messages-area" id="chatMessagesArea">
+        <!-- Dynamic chat bubbles -->
+      </div>
+
+      <div class="chat-input-bar">
+        <input type="text" id="chatInputText" placeholder="พิมพ์ข้อความเจรจานัดรับของ..." onkeypress="handleChatEnter(event)">
+        <button class="btn-send-chat" onclick="sendChatMessage()">
+          <i data-lucide="send"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 4: IN-APP VOICE CALL SIMULATOR MODAL -->
+  <div class="modal-overlay" id="voiceCallModal">
+    <div class="call-screen-card">
+      <div class="call-avatar-wrapper">
+        <img id="callAvatar" src="" alt="อวตารผู้รับสาย">
+        <div class="call-pulse-ring"></div>
+      </div>
+      <h3 id="callUserName">กำลังโทร...</h3>
+      <p id="callStatusText">กำลังเชื่อมต่อสัญญาณสายสนทนาชุมชน...</p>
+      <div class="call-timer-badge" id="callTimerBadge" style="display:none;">00:00</div>
+
+      <div class="call-controls-row">
+        <button class="btn-call-opt" id="btnCallMute" onclick="toggleCallMute()">
+          <i data-lucide="mic-off"></i>
+          <span>ปิดเสียง</span>
+        </button>
+        <button class="btn-call-end" onclick="endVoiceCall()">
+          <i data-lucide="phone-off"></i>
+          <span>วางสาย</span>
+        </button>
+        <button class="btn-call-opt" id="btnCallSpeaker" onclick="toggleCallSpeaker()">
+          <i data-lucide="volume-2"></i>
+          <span>ลำโพง</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 5: NOTIFICATIONS MODAL -->
+  <div class="modal-overlay" id="notifModal">
+    <div class="modal-bottom-sheet">
+      <div class="sheet-handle"></div>
+      <button class="modal-close" onclick="closeNotificationsModal()"><i data-lucide="x"></i></button>
+
+      <div class="notif-container">
+        <div class="notif-header">
+          <h3><i data-lucide="bell"></i> การแจ้งเตือนชุมชน</h3>
+          <button class="btn-mark-read" onclick="markAllNotificationsRead()">อ่านทั้งหมด</button>
+        </div>
+
+        <div class="notif-list" id="notifList">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 6: STORY VIEWER MODAL -->
+  <div class="modal-overlay" id="storyModal">
+    <div class="story-viewer-card">
+      <button class="story-close" onclick="closeStoryViewer()"><i data-lucide="x"></i></button>
+      <div class="story-header">
+        <img id="storyAvatar" src="" alt="อวตาร">
+        <div>
+          <strong id="storyAuthor">ชื่อผู้โพสต์</strong>
+          <span>เรื่องราวชุมชนโพธาราม</span>
+        </div>
+      </div>
+      <div class="story-body">
+        <p id="storyTextContent">ข้อความสตอรี่...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
